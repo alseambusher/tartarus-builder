@@ -1,0 +1,3 @@
+[submodule "tartarus"]
+	path = tartarus
+	url = git@github.com:alseambusher/tartarus.git
