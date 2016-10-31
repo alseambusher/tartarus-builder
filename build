@@ -1,0 +1,25 @@
+rm -rf target
+
+CURRENT=`pwd`
+cd tartarus
+npm install
+npm run prerelease
+
+cd app
+
+electron-packager . --platform=win32 --arch=x64 --icon=../resources/icons/karma.ico --overwrite
+electron-packager . --platform=darwin --arch=x64 --icon=../resources/icons/karma.icns --overwrite
+electron-packager . --platform=linux --arch=x64 --icon=../resources/icons/karma.png --overwrite
+
+mkdir $CURRENT/target
+mv tartarus-* $CURRENT/target/
+
+cd $CURRENT
+
+if [ "$1" == "--archive" ]
+then
+  for i in `ls |grep 'Karma-*'`
+  do
+    zip -r $i $i
+  done
+fi
