@@ -2,6 +2,7 @@ rm -rf target
 
 CURRENT=`pwd`
 cd tartarus
+rm app/db/*.db
 npm install
 npm run prerelease
 
@@ -11,6 +12,7 @@ electron-packager . --platform=win32 --arch=x64 --icon=../resources/icons/karma.
 electron-packager . --platform=darwin --arch=x64 --icon=../resources/icons/karma.icns --overwrite
 electron-packager . --platform=linux --arch=x64 --icon=../resources/icons/karma.png --overwrite
 
+rm -rf $CURRENT/target
 mkdir $CURRENT/target
 mv tartarus-* $CURRENT/target/
 
